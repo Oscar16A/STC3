@@ -44,15 +44,15 @@ TagManager:
   - name: Platforms
     uniqueID: 729057733
     locked: 0
-  - name: Enemies
-    uniqueID: 2767902291
-    locked: 0
   - name: Bullets
     uniqueID: 3970122103
     locked: 0
-  - name: Player
-    uniqueID: 672766331
+  - name: Enemies
+    uniqueID: 2767902291
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Player
+    uniqueID: 672766331
     locked: 0
