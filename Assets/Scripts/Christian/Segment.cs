@@ -2,17 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+public class Segment
 {
-    // Start is called before the first frame update
-    void Start()
+    private Obstacle[] obstacles;
+    private string filePath;
+
+    public Segment(string filePath)
     {
-        
+        this.filePath = filePath;
+        obstacles = ReadSegmentFile(filePath);
     }
 
-    // Update is called once per frame
-    void Update()
+    public int GetNumObstacles()
     {
-        
+        return obstacles.Length;
+    }
+
+    public string GetFilePath()
+    {
+        return filePath;
+    }
+
+    private Obstacle[] ReadSegmentFile(string filePath)
+    {
+
+        return null;
     }
 }
