@@ -756,7 +756,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1665815685}
-  - component: {fileID: 1665815686}
   m_Layer: 0
   m_Name: Middleground
   m_TagString: Untagged
@@ -780,22 +779,6 @@ Transform:
   m_Father: {fileID: 1559316887}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1665815686
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1665815684}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8cbccf7af31d0b64bac0a71de890c151, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: {x: 2.5, y: 2.5}
-  direction: {x: -1, y: 0}
-  isLinkedToCamera: 0
-  bgLoop: 0
 --- !u!1 &1951373662
 GameObject:
   m_ObjectHideFlags: 0
@@ -918,5 +901,15 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 065fc62ab13816f47a10706dcc51bdc4,
         type: 3}
+    - target: {fileID: 6426009824552471290, guid: 4909b8876b4bdbc459ec47e6d96f3add,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 729057733
+      objectReference: {fileID: 0}
+    - target: {fileID: 6426009824552471290, guid: 4909b8876b4bdbc459ec47e6d96f3add,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: -3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4909b8876b4bdbc459ec47e6d96f3add, type: 3}
