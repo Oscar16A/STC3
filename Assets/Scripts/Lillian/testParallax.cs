@@ -12,6 +12,7 @@ public class testParallax : MonoBehaviour
 	public bool isLinkedToCamera = false;
 	// check if bg is infinite
 	public bool bgLoop = false;
+	//public bool mgLoop = false; 
 
 	private List<SpriteRenderer> backgroundPart;
 

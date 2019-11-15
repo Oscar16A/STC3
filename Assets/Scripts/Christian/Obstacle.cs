@@ -2,26 +2,35 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObstaclePrefab : MonoBehaviour
+public abstract class Obstacle : MonoBehaviour
 {
+    // Obstacle movement
     public float xScroll;
-    public int health = -1, damage = 1;
-    public Movement movement; // Defines the path the obstacle will take
+    public bool dependent = true; // false = movement independent of xScroll
 
-    private Rigidbody2D rb;
+    // Obstacle health/damage
+    public int health = -1, damage = 1;
+    
+    // Technical stuffs
+    protected Rigidbody2D rb;
     private Vector2 screenBounds;
     private float xSize; // Half the size of the obstacle for offscreen object destruction purposes
 
-    // Start is called before the first frame update
+
+    // Initializes the obstacle's fields
+    protected abstract void StartObstacle();
+
+    // Updates the obstacle's movement
+    protected abstract void MoveObstacle(bool independent); 
+
+
     void Start()
     {
-        // Setup Obstacle Movement
-        movement = new Static(xScroll);
-        Vector2 velocity = movement.TrueVelocity();
- 
         // Set movement of the game object (the obstacle)
-        rb = GetComponent<Rigidbody2D>();
-        rb.velocity = velocity;
+        rb = this.GetComponent<Rigidbody2D>();
+
+        // Set obstacle fields
+        StartObstacle();
 
         // Get boundaries for off camera game object despawning
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
@@ -30,24 +39,25 @@ public class ObstaclePrefab : MonoBehaviour
         xSize = transform.localScale.x / 2;
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
-        // Obstacle movement
-        rb.velocity = movement.Execute();
-
-        // Debug.Log("w: " + screenBounds.x + " h: " + screenBounds.y);
+        Debug.Log("w: " + screenBounds.x + " h: " + screenBounds.y);
         Debug.Log("x: " + transform.position.x + " y: " + transform.position.y);
+
+        // Update obstacles movement (velocity/acceleration)
+        MoveObstacle(dependent);
+
+        Debug.Log(rb.velocity);
 
         // Object gets uninstantiated once off the camera (dependent of x axis position)
         if (xScroll > 0 && transform.position.x > -screenBounds.x + xSize)
         {
-            Debug.Log("right");
+            // Debug.Log("right");
             Destroy(this.gameObject);
         }
         if (xScroll < 0 && transform.position.x < screenBounds.x - xSize)
         {
-            Debug.Log("left");
+            // Debug.Log("left");
             Destroy(this.gameObject);
         }
     }
