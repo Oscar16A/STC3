@@ -8,8 +8,9 @@ public class StaticObstacle : Obstacle
     private readonly float xVel = 0f, yVel = 0f;
 
     // Velocity vectors
-    private Vector2 velocityRelative;
-    private Vector2 velocityTrue;
+    private Vector2 velocityRelative; // Does not include the xScroll
+    private Vector2 velocityTrue; // Includes the xScroll
+
 
     protected override void StartObstacle()
     {
@@ -19,9 +20,9 @@ public class StaticObstacle : Obstacle
 
     protected override void MoveObstacle(bool dependent)
     {
-        Debug.Log("xScroll: " + xScroll);
-        Debug.Log("vel rel: " + velocityRelative);
-        Debug.Log("vel true: " + velocityTrue);
+        // Debug.Log("xScroll: " + xScroll);
+        // Debug.Log("vel rel: " + velocityRelative);
+        // Debug.Log("vel true: " + velocityTrue);
         rb.velocity = (dependent) ? velocityTrue : velocityRelative;
     }
 }

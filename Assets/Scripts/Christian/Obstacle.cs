@@ -41,13 +41,13 @@ public abstract class Obstacle : MonoBehaviour
 
     void FixedUpdate()
     {
-        Debug.Log("w: " + screenBounds.x + " h: " + screenBounds.y);
-        Debug.Log("x: " + transform.position.x + " y: " + transform.position.y);
+        // Debug.Log("w: " + screenBounds.x + " h: " + screenBounds.y);
+        // Debug.Log("x: " + transform.position.x + " y: " + transform.position.y);
 
         // Update obstacles movement (velocity/acceleration)
         MoveObstacle(dependent);
 
-        Debug.Log(rb.velocity);
+        // Debug.Log(rb.velocity);
 
         // Object gets uninstantiated once off the camera (dependent of x axis position)
         if (xScroll > 0 && transform.position.x > -screenBounds.x + xSize)
