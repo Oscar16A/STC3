@@ -19,7 +19,7 @@ public class SegmentSpawner : MonoBehaviour
 
     void Start()
     {
-        screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
+        screenBounds = new Vector2(-Camera.main.aspect * Camera.main.orthographicSize, Camera.main.orthographicSize);
         //Debug.Log("+x bound: " + screenBounds.x + " -x bound: " + -screenBounds.x);
 
         segments = LoadSegments(directory);
