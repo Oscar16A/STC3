@@ -20,9 +20,6 @@ public class StaticObstacle : Obstacle
 
     protected override void MoveObstacle(bool dependent)
     {
-        // Debug.Log("xScroll: " + xScroll);
-        // Debug.Log("vel rel: " + velocityRelative);
-        // Debug.Log("vel true: " + velocityTrue);
-        rb.velocity = (dependent) ? velocityTrue : velocityRelative;
+        transform.Translate((dependent) ? velocityTrue : velocityRelative);
     }
 }

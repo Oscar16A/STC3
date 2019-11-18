@@ -142,7 +142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   directory: Prefab
-  xScroll: 2
+  xScroll: -0.2
   segments: []
 --- !u!4 &70055438
 Transform:

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,20 +19,16 @@ public class Segment : MonoBehaviour
 
     void FixedUpdate()
     {
-        // Debug.Log("Children: " + GetComponentsInChildren<Obstacle>().Length);
-        // Debug.Log("X Size: " + GetXSize());
-
         // If the segment has no more children components, destory the segment
         if (GetComponentsInChildren<Obstacle>().Length == 0)
         {
-            // Debug.Log("Segment destroyed");
             Destroy(this.gameObject);
         }
     }
 
 
-    // Returns the width of the segment from the lowest x-axis edge to the highest x-axis edge
-    public float GetXSize()
+    // Returns the x position of the leftmost edge relative to the x position of the segment
+    public float GetXMin()
     {
         Obstacle[] obstacles = GetComponentsInChildren<Obstacle>();
 
@@ -41,14 +38,14 @@ public class Segment : MonoBehaviour
             return 0;
         }
 
-        float minXPos = obstacles[0].transform.position.x, maxXPos = minXPos;
-        float minXScale = obstacles[0].transform.localScale.x / 2, maxXScale = minXScale;
+        float minXPos = obstacles[0].transform.position.x;
+        float minXScale = obstacles[0].GetComponent<SpriteRenderer>().bounds.size.x / 2;
 
         // Compare each child obstacle of the segment game object to determine min and max
-        for (int i = 1; i < obstacles.Length; i++)
+        for (int i = 0; i < obstacles.Length; i++)
         {
             float currentXPos = obstacles[i].transform.position.x;
-            float currentXScale = obstacles[i].transform.localScale.x / 2;
+            float currentXScale = obstacles[i].GetComponent<SpriteRenderer>().bounds.size.x / 2;
 
             // Compare for minimum x position
             if (currentXPos - currentXScale < minXPos - minXScale)
@@ -56,6 +53,32 @@ public class Segment : MonoBehaviour
                 minXPos = currentXPos;
                 minXScale = currentXScale;
             }
+
+        }
+
+        return minXPos - minXScale;
+    }
+
+    // Returns the x position of the rightmost edge relative to the x position of the segment
+    public float GetXMax()
+    {
+        Obstacle[] obstacles = GetComponentsInChildren<Obstacle>();
+
+        // Return a zero early if there is less than one obstacles in the segment
+        if (obstacles.Length < 1)
+        {
+            return 0;
+        }
+
+        float maxXPos = obstacles[0].transform.position.x;
+        float maxXScale = obstacles[0].GetComponent<SpriteRenderer>().bounds.size.x / 2;
+
+        // Compare each child obstacle of the segment game object to determine min and max
+        for (int i = 1; i < obstacles.Length; i++)
+        {
+            float currentXPos = obstacles[i].transform.position.x;
+            float currentXScale = obstacles[i].GetComponent<SpriteRenderer>().bounds.size.x / 2;
+
             // Compare for maximum x position
             if (currentXPos + currentXScale > maxXPos + maxXScale)
             {
@@ -64,7 +87,12 @@ public class Segment : MonoBehaviour
             }
         }
 
-        // The distance from the edge of minimum game object to the maximum game object position
-        return (maxXPos - minXPos) + (minXScale + maxXScale);
+        return maxXPos + maxXScale;
+    }
+
+    // Returns the width of the segment from the lowest x-axis edge to the highest x-axis edge
+    public float GetXSize()
+    {
+        return GetXMax() - GetXMin();
     }
 }
