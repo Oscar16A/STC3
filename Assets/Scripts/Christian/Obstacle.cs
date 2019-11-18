@@ -29,7 +29,7 @@ public abstract class Obstacle : MonoBehaviour
         StartObstacle();
 
         // Get boundaries for off camera game object despawning
-        screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
+        screenBounds = new Vector2(-Camera.main.aspect * Camera.main.orthographicSize, Camera.main.orthographicSize);
 
         // Edge offset of object
         xSize = GetComponent<SpriteRenderer>().bounds.size.x / 2;
