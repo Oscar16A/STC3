@@ -6,7 +6,6 @@ using System.IO;
 
 public class SegmentSpawner : MonoBehaviour
 {
-    public string directory = "Prefab";
     public float xScroll;
 
     // Variables regarding to the segment prefabs
@@ -22,7 +21,7 @@ public class SegmentSpawner : MonoBehaviour
         screenBounds = new Vector2(-Camera.main.aspect * Camera.main.orthographicSize, Camera.main.orthographicSize);
         //Debug.Log("+x bound: " + screenBounds.x + " -x bound: " + -screenBounds.x);
 
-        segments = LoadSegments(directory);
+        segments = LoadSegments();
 
         currentSegment = InstantiateSegment(segments[Random.Range(0, segments.Length)]);
         if (xScroll < 0)
@@ -86,21 +85,18 @@ public class SegmentSpawner : MonoBehaviour
     }
 
     // Takes in a the directory path for the prefabs and returns an array of only segment game objects
-    private Segment[] LoadSegments(string directory)
+    private Segment[] LoadSegments()
     {
         // Get all prefab file paths from the directory
-        string directoryPath = Application.dataPath + "/" + directory;
-        string[] filePaths = Directory.GetFileSystemEntries(directoryPath, "*.prefab");
+        // string directoryPath = Application.dataPath + "/" + directory;
+        // string[] filePaths = Directory.GetFileSystemEntries(directoryPath, "*.prefab");
 
+        // Load all segments from the Resources folder
+        GameObject[] prefabs = Resources.LoadAll<GameObject>("");
         List<Segment> segments = new List<Segment>();
-        directory = "Assets/" + directory + "/";
 
-        // Load any prefab that is a segment into a list
-        foreach (string filePath in filePaths)
+        foreach (GameObject prefab in prefabs)
         {
-            string fileName = Path.GetFileName(filePath);
-            GameObject prefab = AssetDatabase.LoadAssetAtPath<GameObject>(directory + fileName);
-
             if (prefab.GetComponent<Segment>())
             {
                 segments.Add(prefab.GetComponent<Segment>());
