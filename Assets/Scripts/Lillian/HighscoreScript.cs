@@ -13,6 +13,7 @@ public class HighscoreScript : MonoBehaviour
 	{
 		int number = Random.Range(1, 7);
 		score.text = number.ToString();
+		//Debug.Log(score);
 	} 
 
 
