@@ -534,6 +534,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c562fe3b9ebc9fa4986730e21a546d0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  score: {fileID: 0}
 --- !u!1 &1075837668
 GameObject:
   m_ObjectHideFlags: 0
@@ -561,7 +562,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 1195620274}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -642,7 +643,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 175
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -668,7 +669,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1195620272}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalPosition: {x: 0, y: 120, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -834,6 +835,7 @@ GameObject:
   - component: {fileID: 1621053419}
   - component: {fileID: 1621053421}
   - component: {fileID: 1621053420}
+  - component: {fileID: 1621053422}
   m_Layer: 0
   m_Name: playerScoreText (1)
   m_TagString: Untagged
@@ -891,7 +893,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '#########'
+  m_Text: 0000000
 --- !u!222 &1621053421
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -900,6 +902,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1621053418}
   m_CullTransparentMesh: 0
+--- !u!114 &1621053422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1621053418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c562fe3b9ebc9fa4986730e21a546d0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score: {fileID: 1621053420}
 --- !u!1 &1688294805
 GameObject:
   m_ObjectHideFlags: 0
