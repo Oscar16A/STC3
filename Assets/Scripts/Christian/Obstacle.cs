@@ -20,7 +20,7 @@ public abstract class Obstacle : MonoBehaviour
     protected abstract void StartObstacle();
 
     // Updates the obstacle's movement
-    protected abstract void MoveObstacle(bool independent); 
+    protected abstract void MoveObstacle(bool dependent); 
 
 
     void Start()

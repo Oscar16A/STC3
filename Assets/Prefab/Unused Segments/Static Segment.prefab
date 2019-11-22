@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 589502135491100663}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.520415, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2240227624906183515}
@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   difficulty: 1
-  xScroll: -0.2
+  xScroll: 0
 --- !u!1001 &6748953071264311275
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -53,11 +53,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3545435793374724131}
     m_Modifications:
-    - target: {fileID: 4809837977917289655, guid: 7c96924b7902472408df383b3da56895,
-        type: 3}
-      propertyPath: m_Name
-      value: StaticObstacle
-      objectReference: {fileID: 0}
     - target: {fileID: 4809837977917289648, guid: 7c96924b7902472408df383b3da56895,
         type: 3}
       propertyPath: m_LocalRotation.x
@@ -112,6 +107,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4809837977917289655, guid: 7c96924b7902472408df383b3da56895,
+        type: 3}
+      propertyPath: m_Name
+      value: StaticObstacle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c96924b7902472408df383b3da56895, type: 3}
