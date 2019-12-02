@@ -15,6 +15,7 @@ public class SegmentSpawner : MonoBehaviour
     private Segment currentSegment, nextSegment;
     private float prevSpawnPos;
 
+    private int prevIndex1, prevIndex2;
 
     void Start()
     {
@@ -23,7 +24,11 @@ public class SegmentSpawner : MonoBehaviour
 
         segments = LoadSegments();
 
-        currentSegment = InstantiateSegment(segments[Random.Range(0, segments.Length)]);
+        int index = Random.Range(0, segments.Length);
+        prevIndex2 = prevIndex1;
+        prevIndex1 = index;
+
+        currentSegment = InstantiateSegment(segments[index]);
         if (xScroll < 0)
         {
             prevSpawnPos = currentSegment.GetXMin();
@@ -32,20 +37,31 @@ public class SegmentSpawner : MonoBehaviour
         {
             prevSpawnPos = currentSegment.GetXMax();
         }
-        
+
     }
 
     void FixedUpdate()
     {
         if (xScroll < 0 && currentSegment.GetXMax() < prevSpawnPos)
         {
-            currentSegment = InstantiateSegment(segments[Random.Range(0, segments.Length)]);
+            int index = UniqueIndex(segments.Length, new int[] {prevIndex1, prevIndex2});
+
+            currentSegment = InstantiateSegment(segments[index]);
             prevSpawnPos = currentSegment.GetXMin();
+            Debug.Log(index + " " + prevIndex1 + " " + prevIndex2);
+
+            prevIndex2 = prevIndex1;
+            prevIndex1 = index;
         }
         else if (xScroll > 0 && currentSegment.GetXMin() > prevSpawnPos)
         {
-            currentSegment = InstantiateSegment(segments[Random.Range(0, segments.Length)]);
+            int index = UniqueIndex(segments.Length, new int[] { prevIndex1, prevIndex2 });
+
+            currentSegment = InstantiateSegment(segments[index]);
             prevSpawnPos = currentSegment.GetXMax();
+
+            prevIndex2 = prevIndex1;
+            prevIndex1 = index;
         }
     }
 
@@ -82,6 +98,30 @@ public class SegmentSpawner : MonoBehaviour
 
         // Instantiates the segment prefab into the scene
         return Instantiate(segment).GetComponent<Segment>();
+    }
+
+    // Generates a random index that is not in the excluded indices
+    private int UniqueIndex(int range, int[] exclude)
+    {
+        int index = -1;
+        bool contains = false;
+        do
+        {
+            index = Random.Range(0, range);
+
+            // Check if the new index is inside the exluded indices
+            contains = false;
+            foreach (int num in exclude)
+            {
+                if (index == num)
+                {
+                    contains = true;
+                    break;
+                }
+            }
+        } while (contains);
+
+        return index;
     }
 
     // Takes in a the directory path for the prefabs and returns an array of only segment game objects

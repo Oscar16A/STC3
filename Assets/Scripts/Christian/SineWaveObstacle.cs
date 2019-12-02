@@ -10,7 +10,7 @@ public class SineWaveObstacle : Obstacle
     public float offset = 0;
 
     // xScroll direction adjustment variable
-    private int direction;
+    protected int direction;
 
     // Movement/location related variables
     private float conversionRatio;

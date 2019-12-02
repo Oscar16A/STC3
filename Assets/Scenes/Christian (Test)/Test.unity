@@ -141,7 +141,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9ae6d2248fb0044d9a7d814e13dc95d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directory: Prefab
   xScroll: -0.1
   segments: []
 --- !u!4 &70055438

@@ -32,11 +32,11 @@ public class DynamicObstacle : Obstacle
 
         if (dependent)
         {
-            transform.Translate(xVel + xScroll, yVel, transform.position.z);
+            transform.Translate(xVel + xScroll, yVel, 0);
         }
         else
         {
-            transform.Translate(xVel, yVel, transform.position.z);
+            transform.Translate(xVel, yVel, 0);
         }
         
     }
